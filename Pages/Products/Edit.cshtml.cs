@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using FinalProject.Data;
 using FinalProject.Models;
+using System.ComponentModel;
 
 namespace FinalProject.Pages.Products
 {
@@ -25,6 +26,7 @@ namespace FinalProject.Pages.Products
         [BindProperty]
         public Product Product { get; set; } = default!;
         [BindProperty] // This is the image file uploaded to the server which is optional
+        [DisplayName("Upload a new Image to update it")]
         public IFormFile? ImageUpload { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)

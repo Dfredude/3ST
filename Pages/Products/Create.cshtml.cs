@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using FinalProject.Data;
 using FinalProject.Models;
+using System.ComponentModel;
 
 namespace FinalProject.Pages.Products
 {
@@ -29,6 +30,7 @@ namespace FinalProject.Pages.Products
         [BindProperty]
         public Product Product { get; set; } = default!;
         [BindProperty]
+        [DisplayName("Upload Image")]
         public IFormFile ImageUpload { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
