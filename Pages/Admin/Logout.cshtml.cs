@@ -11,7 +11,7 @@ namespace FinalProject.Pages.Admin
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToPage("/Admin/LoggedOutView");
+            return RedirectToPage("/Index");
         }
     }
 }
