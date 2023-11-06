@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using FinalProject.Data;
 using FinalProject.Models;
 using System.ComponentModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProject.Pages.Products
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
         private readonly FinalProject.Data.FinalProjectContext _context;
