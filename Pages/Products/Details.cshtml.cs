@@ -68,15 +68,6 @@ namespace FinalProject.Pages.Products
                 cookies.Add(Product.ID);
                 Response.Cookies.Append("ShoppingCart", JsonSerializer.Serialize(cookies));
             }
-
-            //var product = await _context.Product.FindAsync(Product.ID);
-
-            //if (product != null)
-            //{
-            //    Product = product;
-            //    _context.Product.Remove(Product);
-            //    await _context.SaveChangesAsync();
-            //}
             return RedirectToPage("./Index");
         }
 

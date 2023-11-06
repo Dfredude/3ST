@@ -19,14 +19,21 @@
             <th>
                 @Html.DisplayNameFor(model => model.Product[0].ProductName)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ImageName)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Product) {
+        string imageFileName = item.ImageName;
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <img src="~/images/@imageFileName" alt="No Image available for this product" width="300" />
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |

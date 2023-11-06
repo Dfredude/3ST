@@ -18,11 +18,20 @@
             <dd class="col-sm-10">
                 @Html.DisplayFor(model => model.Product.ProductName)
             </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Product.ImageName)
+            </dt>
+            <dd class="col-sm-10">
+                <img src="~/images/@Model.Product.ImageName" alt="No Image available for this product" width="300" />
+            </dd>
+                
         </dl>
         <div class="row">
             <div class="col">
-                <input type="hidden" asp-for="Product.ID" />
-                <input type="hidden" asp-for="Product.ProductName" />
+                @* Hidden fields to pass to the cart *@
+                <input type="hidden" asp-for="Product.ID" readonly/>
+                <input type="hidden" asp-for="Product.ProductName" readonly/>
+                <input type="hidden" asp-for="Product.ImageName" readonly/>
                 <button type="submit" class="btn btn-primary">Add to cart</button>
             </div>
         </div>
