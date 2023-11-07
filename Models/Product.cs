@@ -7,6 +7,7 @@ namespace FinalProject.Models
         public int ID { get; set; }
         [DisplayName("Name of good")]
         public string ProductName { get; set; }
+        [DisplayName("Picture")]
         public string ImageName { get; set; }
     }
 }

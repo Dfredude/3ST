@@ -3,6 +3,8 @@
 
 @{
     ViewData["Title"] = "Index";
+    // Bool whether user is authenticated
+    bool isAuthenticated = (User != null) && User.Identity.IsAuthenticated;
 }
 
 <h1>Index</h1>
@@ -11,9 +13,12 @@
 </p>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    @if (isAuthenticated)
+    {
+        <text><a type="button" class="btn btn-primary" asp-page="Create">Create New</a></text>
+    }
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -26,6 +31,7 @@
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model.Product) {
         string imageFileName = item.ImageName;
         <tr>
@@ -36,9 +42,18 @@
                 <img src="~/images/@imageFileName" alt="No Image available for this product" width="300" />
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                @if (isAuthenticated)
+                {
+                    <text><a type="button" class="btn btn-success" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> | </text>
+                }
+                @if (!isAuthenticated)
+                {
+                    <a type="button" class="btn btn-secondary" asp-page="./Details" asp-route-id="@item.ID">Details</a>    
+                }
+                @if (isAuthenticated)
+                {
+                        <text><a type="button" class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a></text>
+                }
             </td>
         </tr>
 }
