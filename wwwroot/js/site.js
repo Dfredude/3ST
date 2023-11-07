@@ -1,10 +1,7 @@
 ﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
-// Write your JavaScript code.
-
 // Add event listener when input file is changed
-
 const input_image = document.querySelector("input[type=file]");
 input_image.addEventListener("change", function () {
     const input_image_file = this.files[0]
@@ -19,6 +16,7 @@ input_image.addEventListener("change", function () {
 
     if (input_image_file) {
         reader.readAsDataURL(input_image_file);
+        image_preview.hidden = false;
     }
 }
 )
