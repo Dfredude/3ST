@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using FinalProject.Data;
 using FinalProject.Models;
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FinalProject.Pages.Products
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly FinalProject.Data.FinalProjectContext _context;
