@@ -9,5 +9,8 @@ namespace FinalProject.Models
         public string ProductName { get; set; }
         [DisplayName("Picture")]
         public string ImageName { get; set; }
+        public string Description { get; set; } = default!;
+        public float Price { get; set; } = default!;
+        public bool LTL { get; set; } = false;
     }
 }
