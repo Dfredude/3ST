@@ -30,7 +30,6 @@ namespace FinalProject.Pages.Products
         [BindProperty] // This is the image file uploaded to the server which is optional
         [DisplayName("Upload a new Image to update it")]
         public IFormFile? ImageUpload { get; set; }
-
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null || _context.Product == null)

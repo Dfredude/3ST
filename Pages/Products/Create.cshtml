@@ -18,6 +18,21 @@
                 <input asp-for="Product.ProductName" class="form-control" />
                 <span asp-validation-for="Product.ProductName" class="text-danger"></span>
             </div>
+            <div class="form-grpup mb-2">
+                <label asp-for="Product.Description" class="control-label"></label>
+                <input asp-for="Product.Description" class="form-control" />
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-goup mb-2">
+                <label asp-for="Product.Price" class="control-label"></label>
+                <input asp-for="Product.Price" class="form-control" />
+                <span asp-validation-for="Product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-check mb">
+                <label asp-for="Product.LTL" class="form-check-label"></label>
+                <input asp-for="Product.LTL" class="form-check-input" />
+                <span asp-validation-for="Product.LTL" class="text-danger"></span>
+            </div>
             <div class="form-group mb-2">
                 <label asp-for="ImageUpload" class="control-label"></label>
                 <img hidden class="mb-2" src="~/images/TextFile.svg" alt="No image selected" height="400"/>
