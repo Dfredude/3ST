@@ -2,9 +2,54 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    var featured = Model.Product;
 }
 
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Go to <a asp-page="/Products/Index">Products</a></p>
+    <div class="container-fluid text-center p-0" style="background:#c8d6e5; ">
+        <div class="row row-cols-2 justify-content-between">
+            <div class="col">
+                <img class="img-fluid" src="~/images/Cover.jpg"/>
+            </div>
+            <div class="col">
+                <div class="container p-3">
+                    <div class="row">
+                        <div class="col-md-6 p-2">
+                            <h2>@featured.ProductName</h2>
+                            <p>@featured.Description</p>
+                            <a class="btn btn-primary" type="button" asp-page="/Products/Details" asp-route-id="@featured.ID">Order Now</a>
+                        </div>
+                        <div class="col-md-6">
+                            <img class="img-fluid" src="@Model.FeaturedProductImageURL" alt="Featured Product" />
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row justify-content-start">
+    @foreach (var item in Model.Products)
+    {
+        // Card layout for each product
+        string imageFileName = item.ImageName;
+        <div class="col-md-auto">
+        <div class="card h-100" style="width:18rem;">
+            <a asp-page="Products/Details" asp-route-id="@item.ID">
+            <img class="card-img-top" src="~/images/@imageFileName" alt="No Image available for this product"/>
+            <div class="card-body">
+                <h2 class="card-title">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </h2>
+                <p class="card-text">
+                    $@Html.DisplayFor(modelItem => item.Price)/mile
+                </p>
+            </div>
+            </a>
+        </div>
+        </div>
+    }
+    </div>
 </div>

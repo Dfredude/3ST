@@ -16,3 +16,16 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Pointer cursor when hover over .card*/
+
+.card {
+  cursor: pointer;
+}
+
+/* Remove styling for clickable anchor within .card*/
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+}
