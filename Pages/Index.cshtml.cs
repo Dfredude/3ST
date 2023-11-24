@@ -4,6 +4,7 @@ using FinalProject.Data;
 using FinalProject.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Build.Framework;
+using System.Text.Json;
 
 namespace FinalProject.Pages
 {
@@ -39,6 +40,16 @@ namespace FinalProject.Pages
 
             // Fetch all products on the DB
             Products = await _context.Product.ToListAsync();
+
+            // Get number of items in shopping cart
+            var ShoppingCart = Request.Cookies["ShoppingCart"];
+            ViewData["CartCount"] = 0;
+            if (ShoppingCart != null)
+            {
+                List<int> items = JsonSerializer.Deserialize<List<int>>(ShoppingCart);
+                ViewData["CartCount"] = items.Count;
+            }
+
             // Redirect to the product page
             return Page();
         }

@@ -31,17 +31,6 @@ namespace FinalProject.Pages.Products
                 Product = await _context.Product.ToListAsync();
             }
 
-            // Get number of items in shopping cart
-            var ShoppingCart = Request.Cookies["ShoppingCart"];
-            if (ShoppingCart != null)
-            {
-                List<int> items = JsonSerializer.Deserialize<List<int>>(ShoppingCart);
-                ViewData["CartCount"] = items.Count;
-            }
-            else
-            {
-                ViewData["CartCount"] = 0;
-            }
         }
     }
 }

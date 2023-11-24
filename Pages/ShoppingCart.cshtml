@@ -1,0 +1,52 @@
+﻿@page
+@using FinalProject.Models
+@model HaulMaster.Pages.ShoppingCartModel
+@{
+}
+
+
+<div class="p-3 rounded-3" style="background: #c8d6e5;">
+    <h2 class="display-4">Shopping Cart</h2>
+</div>
+<br />
+<div class="container text-center">
+
+@if (Model.CartItems.Count == 0)
+{
+    <h3 class="m-auto">🛒 Your cart is empty.</h3>
+    <br />
+    <a type="button" class="btn btn-primary" asp-page="/Index">Shop</a>
+}
+else
+{
+<p>You have @ViewData["CartCount"] product(s) in the cart</p>
+<table class="table table-striped">
+<thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Product item in Model.CartItems)
+        {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>1</td>
+                <td>$@item.Price</td>
+                <td><a asp-page-handler="RemoveFromCart" asp-route-id="@item.ID">Remove</a></td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total</td>
+            <td>@ViewData["CartCount"]</td>
+            <td>$@ViewData["PriceTotal"]</td>
+        </tr>
+    </tfoot>
+</table>
+}
+</div>

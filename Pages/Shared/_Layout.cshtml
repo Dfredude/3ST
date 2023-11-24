@@ -34,6 +34,12 @@
                                 <a class="nav-link text-dark" asp-area="" asp-page="/Admin/Logout">Logout</a>
                             </li>
                         }
+                        else
+                        {
+                            <li id="shopping-cart-link" class="nav-item">
+                                <a class="nav-link text-dark" asp-page="/ShoppingCart"> 🛒<sup class="rounded-circle" style="background-color: #0abde3;">&nbsp;@ViewData["CartCount"]&nbsp;</sup> </a>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

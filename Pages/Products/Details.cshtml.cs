@@ -25,6 +25,16 @@ namespace FinalProject.Pages.Products
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            var ShoppingCart = Request.Cookies["ShoppingCart"];
+            if (ShoppingCart == null)
+            {
+                ViewData["CartCount"] = 0;
+            }
+            else
+            {
+                ViewData["CartCount"] = JsonSerializer.Deserialize<List<int>>(ShoppingCart).Count;
+            }
+
             if (id == null || _context.Product == null)
             {
                 return NotFound();
@@ -52,23 +62,30 @@ namespace FinalProject.Pages.Products
             {
                 return NotFound();
             }
-            var ShoppingCart = Request.Cookies["ShoppingCart"];
 
+            // Get the cookie or create a new cookie if does not exist.
+            // The cookie will have a 1 day expiry(24hrs).
+            CookieOptions opt = new();
+
+            opt.Expires = new DateTimeOffset(DateTime.UtcNow.AddDays(1));
+
+            var ShoppingCart = Request.Cookies["ShoppingCart"];
             if (ShoppingCart == null)
             {
                 List<int> cookies = new List<int>();
                 cookies.Add(Product.ID);
+                ViewData["CartCount"] = 1;
                 string data = JsonSerializer.Serialize(cookies);
-
-                Response.Cookies.Append("ShoppingCart", data);
+                Response.Cookies.Append("ShoppingCart", data, opt);
             }
             else
             {
                 List<int> cookies = JsonSerializer.Deserialize<List<int>>(ShoppingCart);
                 cookies.Add(Product.ID);
-                Response.Cookies.Append("ShoppingCart", JsonSerializer.Serialize(cookies));
+                ViewData["CartCount"] = cookies.Count;
+                Response.Cookies.Append("ShoppingCart", JsonSerializer.Serialize(cookies), opt);
             }
-            return RedirectToPage("./Index");
+            return RedirectToPage("/Index");
         }
 
     }

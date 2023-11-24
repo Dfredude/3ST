@@ -2,7 +2,7 @@
 @model FinalProject.Pages.Products.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Product";
 }
 
 <div class="row align-items-center">
@@ -23,8 +23,15 @@
                     <dt>❌</dt>
                 }           
         </dl>
-        <a type="button" class="btn btn-primary mb-1" asp-page="/Index">Add to cart</a>
-        <a type="button" class="btn btn-success mb-1" asp-page="/Index">Continue Shopping</a>
+        <form method="post">    
+            @* Hidden fields to pass to the cart *@
+            <input type="hidden" asp-for="Product.ID" readonly />
+            <input type="hidden" asp-for="Product.ProductName" readonly />
+            <input type="hidden" asp-for="Product.ImageName" readonly />
+            <input type="hidden" asp-for="Product.Description" readonly />
+            <button type="submit" class="btn btn-primary mb-1">Add to cart</button>
+            <a type="button" class="btn btn-success mb-1" asp-page="/Index">Continue Shopping</a>
+        </form>
     </div>
     <div class="col-sm-7">
         <img class="img-fluid" src="~/images/@Model.Product.ImageName" alt="No Image available for this product"/>
@@ -35,15 +42,6 @@
 
 <div>
     <hr />
-    <form method="post">
-        <div class="row">
-            <div class="col">
-                @* Hidden fields to pass to the cart *@
-                <input type="hidden" asp-for="Product.ID" readonly/>
-                <input type="hidden" asp-for="Product.ProductName" readonly/>
-                <input type="hidden" asp-for="Product.ImageName" readonly/>
-            </div>
-        </div>
-    </form>
+    
 </div>
 <br />

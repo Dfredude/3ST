@@ -13,7 +13,7 @@
                 <img class="img-fluid" src="~/images/Cover.jpg"/>
             </div>
             <br />
-            <div id="featured-product" class="col-xxl p-4 p-lg-1 p-xl-0 rounded-2" style="background: #c8d6e5;">
+            <div id="featured-product" class="col-xxl p-4 p-lg-1 p-xl-0 rounded-2" style="background: rgba(200, 214, 229,0.69);"> @* Lighter #c8d6e5*@
                 <div class="row h-100 align-items-center justify-content-end gy-2">
                     <div id="featured-product-content" class="col-sm-7 col-md-7 col-lg-8 col-xl-7 col-xxl p-4 p-lg-3 p-xl-4" >
                         @* <p class="lead ps-4">Ship some...</p> *@
@@ -38,13 +38,16 @@
                     <div id="featured-product-img" class="col-sm-5 col-md-5 col-lg-4 col-xl-5 col-xxl text-end">
                         <img class="rounded-end img-fluid" src="@Model.FeaturedProductImageURL" alt="Featured Product" style="max-height: 400px;"/>   
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
     </div>
     <br />
     <h1 class="display-4">Our Long-Haul-Load Products</h1>
-    <br />
+    <p class="mb-2 lead">
+        🛒 You have @ViewData["CartCount"] products in the cart
+    </p>
+    <hr />
     <div class="row justify-content-start">
     @foreach (var item in Model.Products)
     {
