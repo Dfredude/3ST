@@ -1,6 +1,74 @@
 ﻿@page
 @model HaulMaster.Pages.CheckoutModel
 @{
+
+    // Card validation
 }
 
-<h1>Shopping Cart</h1>
+<h1>Checkout</h1>
+@* Display a button to “Place Order” and a button or link to return to Shopping Cart page. *@
+
+@* Display a form with the following fields: *@
+@* First Name, Last Name, Address, City, State, Zip Code, Phone Number, Email Address, Credit Card Number, Credit Card Expiration Date, Credit Card Security Code. *@
+@* Display a button to “Place Order” and a button or link to return to Shopping Cart page. *@
+@* When the user clicks the “Place Order” button, the order is saved to the database and the user is redirected to the Order Confirmation page. *@
+@* When the user clicks the “Return to Shopping Cart” button or link, the user is redirected to the Shopping Cart page. *@
+
+<form method="post">
+    @* Validation Summary *@
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Order.Name"></label>
+        <input asp-for="Order.Name" class="form-control" />
+        <span asp-validation-for="Order.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label class="form-label" asp-for="Order.Address"></label>
+        <input asp-for="Order.Address" class="form-control"/>
+            <span asp-validation-for="Order.Address" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.City">@Html.DisplayNameFor((m) => m.Order.City)</label>
+        <input class="form-control" asp-for="Order.City"/>
+        <span asp-validation-for="Order.City" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+            <label asp-for="Order.Country">@Html.DisplayNameFor((m) => m.Order.Country)</label>
+            <input class="form-control" asp-for="Order.Country"/>
+            <span asp-validation-for="Order.Country" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.Province">@Html.DisplayNameFor((m) => m.Order.Province)</label>
+        <input class="form-control" asp-for="Order.Province"/>
+        <span asp-validation-for="Order.Province" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.PostalCode">@Html.DisplayNameFor((m) => m.Order.PostalCode)</label>
+        <input class="form-control" asp-for="Order.PostalCode" />
+        <span asp-validation-for="Order.PostalCode" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+            <label asp-for="Order.CCNumber">@Html.DisplayNameFor((m) => m.Order.CCNumber)</label>
+            <input minlength="16" maxlength="16" class="form-control" asp-for="Order.CCNumber" />
+            <span asp-validation-for="Order.CCNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.CCExpiryDate">@Html.DisplayNameFor((m) => m.Order.CCExpiryDate)</label>
+        <input minlength="4" maxlength="4" class="form-control" asp-for="Order.CCExpiryDate" />
+        <span asp-validation-for="Order.CCExpiryDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.CVV">@Html.DisplayNameFor((m) => m.Order.CVV)</label>
+        <input minlenght="3" maxlength="3" class="form-control" asp-for="Order.CVV" />
+        <span asp-validation-for="Order.CVV" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Order.Products">@Html.DisplayNameFor((m) => m.Order.Products)</label>
+        <select class="form-select" asp-for="Order.Products" class="form-control" asp-items="@(new MultiSelectList(Model.Order.Products, "ID", "ProductName", Model.Order.Products))" multiple readonly></select>
+    </div>
+
+    @* Hidden Inputs *@
+    <input type="hidden" asp-for="Order.ProductsString" value="@Model.Order.ProductsString" />
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</form>
+

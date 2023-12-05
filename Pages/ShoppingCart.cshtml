@@ -48,5 +48,7 @@ else
         </tr>
     </tfoot>
 </table>
+<br />
+<a type="button" class="btn btn-primary" asp-page="/Checkout" asp-route-products="@Model.CartItemsToQueryString(Model.CartItems)">Checkout</a>
 }
 </div>

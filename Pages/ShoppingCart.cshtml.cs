@@ -2,6 +2,7 @@ using FinalProject.Data;
 using FinalProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text;
 using System.Text.Json;
 
 namespace HaulMaster.Pages
@@ -21,7 +22,7 @@ namespace HaulMaster.Pages
         {
             // Get shopping cart cookie
             var ShoppingCart = Request.Cookies["ShoppingCart"];
-            List<int> product_ids = default!;
+            List<int> product_ids = new();
             if (ShoppingCart != null)
             {
                 product_ids = JsonSerializer.Deserialize<List<int>>(ShoppingCart);
@@ -61,5 +62,30 @@ namespace HaulMaster.Pages
             Response.Cookies.Append("ShoppingCart", JsonSerializer.Serialize(product_ids));
             return RedirectToPage("ShoppingCart");
         }
+
+        public List<int> CartItemsToIDList(List<Product> cartItems)
+        {
+            List<int> product_ids = new();
+            foreach (Product prod in cartItems)
+            {
+                product_ids.Add(prod.ID);
+            }
+            return product_ids;
+        }
+
+        public String CartItemsToQueryString(List<Product> cartItems)
+        {
+            List<int> CartItemsIDs = CartItemsToIDList(cartItems);
+            StringBuilder sb = new();
+            foreach (int id in CartItemsIDs)
+            {
+                sb.Append(id);
+                sb.Append(",");
+            }
+            // Remove last comma
+            sb.Remove(sb.Length - 1, 1);
+            return sb.ToString();
+        }
     }
+    
 }
