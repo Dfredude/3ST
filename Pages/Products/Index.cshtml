@@ -4,16 +4,13 @@
 @{
     ViewData["Title"] = "Index";
     // Bool whether user is authenticated
-    bool isAuthenticated = (User != null) && User.Identity.IsAuthenticated;
+    // bool isAuthenticated = (User != null) && User.Identity.IsAuthenticated;
 }
 
 <h1>Index</h1>
 
 <p>
-    @if (isAuthenticated)
-    {
-        <text><a type="button" class="btn btn-primary" asp-page="Create">Create New</a></text>
-    }
+    <text><a type="button" class="btn btn-primary" asp-page="Create">Create New</a></text> 
 </p>
 <table class="table table-striped">
     <thead>
@@ -39,18 +36,9 @@
                 <img src="~/images/@imageFileName" alt="No Image available for this product" width="300" />
             </td>
             <td>
-                @if (isAuthenticated)
-                {
-                    <text><a type="button" class="btn btn-success" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> | </text>
-                }
-                @if (!isAuthenticated)
-                {
-                    <a type="button" class="btn btn-secondary" asp-page="./Details" asp-route-id="@item.ID">Details</a>    
-                }
-                @if (isAuthenticated)
-                {
-                        <text><a type="button" class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a></text>
-                }
+                <text><a type="button" class="btn btn-success" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> | </text>                
+                <a type="button" class="btn btn-secondary" asp-page="./Details" asp-route-id="@item.ID">Details</a>    
+                <text><a type="button" class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a></text>
             </td>
         </tr>
 }

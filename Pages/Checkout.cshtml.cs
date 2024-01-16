@@ -90,21 +90,6 @@ namespace HaulMaster.Pages
             {
                 return Page();
             }
-            // When the customer selects the “Place Order” button, collect the input from the user
-            // and “POST” the order data to the Purchase Processing API
-            // Sample JSON
-            //{
-            //    "name": "string",
-            //    "address": "string",
-            //    "city": "string",
-            //    "province": "string",
-            //    "postalCode": "string",
-            //    "country": "string",
-            //    "ccNumber": number,
-            //    "ccExpiryDate": "string",
-            //    "cvv": number,
-            //    "products": "string"
-            //}   
 
             // Send the order object to the API
 
@@ -126,8 +111,6 @@ namespace HaulMaster.Pages
                 return Page();
             }
 
-
-
             // Clear cookie permanently "ShoppingCart"
             if (Request.Cookies["ShoppingCart"] != null)
             {
@@ -137,7 +120,6 @@ namespace HaulMaster.Pages
                 };
                 Response.Cookies.Append("ShoppingCart", "", cookieOptions);
             }
-
 
             // Redirect to the order confirmation page
 

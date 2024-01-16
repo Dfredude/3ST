@@ -35,8 +35,11 @@ namespace FinalProject.Pages
             if (product != null)
             {
                 Product = product;
+                FeaturedProductImageURL = Path.Combine("images", Product.ImageName);
+            } else
+            {
+                FeaturedProductImageURL = Path.Combine("images", "no-image.png");
             }
-            FeaturedProductImageURL = Path.Combine("images", Product.ImageName);
 
             // Fetch all products on the DB
             Products = await _context.Product.ToListAsync();

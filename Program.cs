@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using FinalProject.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using HaulMaster.Services;
+using HaulMaster.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +24,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     });
 
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<IDriverService, DriverService>();
 
 var app = builder.Build();
 
@@ -37,6 +40,14 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.MapGet("/api/Drivers", (IDriverService driverService) => Results.Ok(driverService.GetDrivers()));
+
+app.MapPost("/api/Drivers", (IDriverService driverService, Driver driver) =>
+{
+    driverService.AddDriver(driver);
+    return Results.Ok();
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
