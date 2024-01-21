@@ -6,6 +6,6 @@ namespace HaulMaster.Services
     {
         List<Driver> GetDrivers();
         Driver GetDriver(int id);
-        void AddDriver(Driver driver);
+        Driver AddDriver(Driver driver);
     }
 }

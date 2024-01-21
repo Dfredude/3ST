@@ -4,6 +4,7 @@ using FinalProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FinalProject.Migrations
 {
     [DbContext(typeof(FinalProjectContext))]
-    partial class FinalProjectContextModelSnapshot : ModelSnapshot
+    [Migration("20240117194431_addedAllModels")]
+    partial class addedAllModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("HaulMaster.Models.Broker", b =>
@@ -82,7 +84,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Broker", (string)null);
+                    b.ToTable("Broker");
                 });
 
             modelBuilder.Entity("HaulMaster.Models.Client", b =>
@@ -124,7 +126,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("USDOT");
 
-                    b.ToTable("Client", (string)null);
+                    b.ToTable("Client");
                 });
 
             modelBuilder.Entity("HaulMaster.Models.Dispatcher", b =>
@@ -141,7 +143,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Dispatcher", (string)null);
+                    b.ToTable("Dispatcher");
                 });
 
             modelBuilder.Entity("HaulMaster.Models.Driver", b =>
@@ -170,7 +172,7 @@ namespace FinalProject.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Driver", (string)null);
+                    b.ToTable("Driver");
                 });
 #pragma warning restore 612, 618
         }

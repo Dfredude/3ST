@@ -1,0 +1,85 @@
+﻿@page
+@model HaulMaster.Pages.Clients.CreateModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+</head>
+<body>
+
+<h4>Client</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Client.USDOT" class="control-label"></label>
+                <input asp-for="Client.USDOT" class="form-control" />
+                <span asp-validation-for="Client.USDOT" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.MC" class="control-label"></label>
+                <input asp-for="Client.MC" class="form-control" />
+                <span asp-validation-for="Client.MC" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Name" class="control-label"></label>
+                <input asp-for="Client.Name" class="form-control" />
+                <span asp-validation-for="Client.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Address" class="control-label"></label>
+                <input asp-for="Client.Address" class="form-control" />
+                <span asp-validation-for="Client.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Phone" class="control-label"></label>
+                <input asp-for="Client.Phone" class="form-control" />
+                <span asp-validation-for="Client.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Email" class="control-label"></label>
+                <input asp-for="Client.Email" class="form-control" />
+                <span asp-validation-for="Client.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.quickPayPercentage" class="control-label"></label>
+                <input asp-for="Client.quickPayPercentage" class="form-control" />
+                <span asp-validation-for="Client.quickPayPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.quickPayTime" class="control-label"></label>
+                <input asp-for="Client.quickPayTime" class="form-control" />
+                <span asp-validation-for="Client.quickPayTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Client.Notes" class="control-label"></label>
+                <input asp-for="Client.Notes" class="form-control" />
+                <span asp-validation-for="Client.Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Client.Blacklisted" /> @Html.DisplayNameFor(model => model.Client.Blacklisted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+</body>
+</html>

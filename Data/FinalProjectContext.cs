@@ -18,5 +18,11 @@ namespace FinalProject.Data
         public DbSet<FinalProject.Models.Product> Product { get; set; } = default!;
 
         public DbSet<HaulMaster.Models.Driver>? Driver { get; set; }
+
+        public DbSet<HaulMaster.Models.Broker>? Broker { get; set; }
+
+        public DbSet<HaulMaster.Models.Client>? Client { get; set; }
+
+        public DbSet<HaulMaster.Models.Dispatcher>? Dispatcher { get; set; }
     }
 }

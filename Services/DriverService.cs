@@ -11,11 +11,14 @@ namespace HaulMaster.Services
         public DriverService(FinalProjectContext context) {
             _context = context;
         }
-        public void AddDriver(Driver driver)
+        public Driver AddDriver(Driver driver)
         {
-            _context.Driver.Add(driver);
-            _context.SaveChanges();
-
+            Driver addedDriver = _context.Driver.Add(driver).Entity;
+            if (_context.SaveChanges() == 0)
+            {
+                throw new DbUpdateException("Unable to add " + typeof(Driver).Name + " to DB");
+            }
+            return addedDriver;
         }
 
         public Driver GetDriver(int id)
@@ -27,10 +30,5 @@ namespace HaulMaster.Services
         {
             return _context.Driver.ToList();
         }
-
-        public List<Driver> drivers = new List<Driver>()
-        {
-            new Driver() { ID = 1, FirstName = "John", LastName = "Doe", Phone = "28913138931" , License="dsada"}
-        };
     }
 }
