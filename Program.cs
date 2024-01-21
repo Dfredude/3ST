@@ -43,23 +43,16 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.MapGet("/api/Drivers", (IDriverService driverService) => Results.Ok(driverService.GetDrivers()));
+app.MapGet("/api/Brokers/{id}", (IBrokerService brokerService, int id) => Results.Ok(brokerService.GetBroker(id)));
 
-app.MapPost("/api/Drivers", (IDriverService driverService, Driver driver) =>
+app.MapGet("/api/Brokers", (IBrokerService brokerService, string? name) =>
 {
-    try
+    if (name == null)
     {
-        return Results.Ok(driverService.AddDriver(driver));
-    } catch (Exception e)
-    {
-        Console.WriteLine(e.Message);
-        return Results.BadRequest(e.Message);
+        return Results.Ok(brokerService.GetBrokers());
     }
+    else return Results.Ok(brokerService.GetBrokersByName(name));
 });
-
-app.MapGet("/api/Drivers/{id}", (IDriverService driverService, int id) => Results.Ok(driverService.GetDriver(id)));
-
-app.MapGet("/api/Brokers", (IBrokerService brokerService) => Results.Ok(brokerService.GetBrokers()));
 
 app.MapPost("/api/Brokers", (IBrokerService brokerService, Broker broker) =>
 {
@@ -73,11 +66,37 @@ app.MapPost("/api/Brokers", (IBrokerService brokerService, Broker broker) =>
     }
 });
 
-app.MapGet("/api/Brokers/{id}", (IBrokerService brokerService, int id) => Results.Ok(brokerService.GetBroker(id)));
+app.MapDelete("/api/Brokers", (IBrokerService brokerService, int id) =>
+{
+    try
+    {
+        brokerService.DeleteBroker(id);
+        return Results.Ok(id);
+    } catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+        return Results.BadRequest(e.Message);
+    }
+});
 
 app.MapGet("/api/Clients", (IClientService clientService) => Results.Ok(clientService.GetClients()));
 
+app.MapGet("/api/Drivers", (IDriverService driverService) => Results.Ok(driverService.GetDrivers()));
 
+app.MapPost("/api/Drivers", (IDriverService driverService, Driver driver) =>
+{
+    try
+    {
+        return Results.Ok(driverService.AddDriver(driver));
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine(e.Message);
+        return Results.BadRequest(e.Message);
+    }
+});
+
+app.MapGet("/api/Drivers/{id}", (IDriverService driverService, int id) => Results.Ok(driverService.GetDriver(id)));
 
 app.UseAuthentication();
 app.UseAuthorization();

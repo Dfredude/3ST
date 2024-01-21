@@ -7,6 +7,9 @@ namespace HaulMaster.Services
     {
         List<Broker> GetBrokers();
         Broker GetBroker(int id);
+        List<Broker> GetBrokersByName(string name);
         Broker AddBroker(Broker broker);
+        Broker UpdateBroker(Broker broker);
+        void DeleteBroker(int id);
     }
 }
